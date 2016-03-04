@@ -7,14 +7,6 @@ public protocol Driver {
     func sensorState(callback: SensorData -> Void)
 }
 
-public protocol Firmata {
-    func setServo(pin: Int, angle: Int)
-    func setPWM(pin: Int, width: Int)
-
-    func analogRead(pin: Int, callback: Double -> Void)
-    func digitalRead(pin: Int, callback: Int -> Void)
-}
-
 public struct Command: Equatable {
     public let throttle: Double
     public let steering: Double

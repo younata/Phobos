@@ -18,6 +18,7 @@
 		8963B50D1C8A15110061F68E /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B50C1C8A15110061F68E /* Math.swift */; };
 		8963B5111C8A17A50061F68E /* MathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5101C8A17A50061F68E /* MathSpec.swift */; };
 		8963B5131C8A18A20061F68E /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5121C8A18A20061F68E /* Types.swift */; };
+		8963B5191C8A26C70061F68E /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5181C8A26C70061F68E /* Firmata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		8963B50C1C8A15110061F68E /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		8963B5101C8A17A50061F68E /* MathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathSpec.swift; sourceTree = "<group>"; };
 		8963B5121C8A18A20061F68E /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		8963B5181C8A26C70061F68E /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				89146E7A1C8A114E00EC8F10 /* Driver.swift */,
-				8963B5121C8A18A20061F68E /* Types.swift */,
+				8963B5181C8A26C70061F68E /* Firmata.swift */,
 				8963B50C1C8A15110061F68E /* Math.swift */,
+				8963B5121C8A18A20061F68E /* Types.swift */,
 				89146E7B1C8A114E00EC8F10 /* main.swift */,
 				89146E661C8A103100EC8F10 /* Info.plist */,
 			);
@@ -240,6 +243,7 @@
 				89146E7D1C8A114E00EC8F10 /* main.swift in Sources */,
 				89146E7C1C8A114E00EC8F10 /* Driver.swift in Sources */,
 				8963B50D1C8A15110061F68E /* Math.swift in Sources */,
+				8963B5191C8A26C70061F68E /* Firmata.swift in Sources */,
 				8963B5131C8A18A20061F68E /* Types.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
