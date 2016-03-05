@@ -19,6 +19,7 @@
 		8963B5111C8A17A50061F68E /* MathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5101C8A17A50061F68E /* MathSpec.swift */; };
 		8963B5131C8A18A20061F68E /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5121C8A18A20061F68E /* Types.swift */; };
 		8963B5191C8A26C70061F68E /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5181C8A26C70061F68E /* Firmata.swift */; };
+		8963B5201C8A62870061F68E /* libfirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B51F1C8A62870061F68E /* libfirmata.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,12 @@
 		8963B5101C8A17A50061F68E /* MathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathSpec.swift; sourceTree = "<group>"; };
 		8963B5121C8A18A20061F68E /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8963B5181C8A26C70061F68E /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
+		8963B51C1C8A626A0061F68E /* firmata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = firmata.h; path = includes/firmata.h; sourceTree = "<group>"; };
+		8963B51D1C8A626A0061F68E /* serial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = serial.h; path = includes/serial.h; sourceTree = "<group>"; };
+		8963B51E1C8A626A0061F68E /* servo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = servo.h; path = includes/servo.h; sourceTree = "<group>"; };
+		8963B51F1C8A62870061F68E /* libfirmata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfirmata.a; sourceTree = "<group>"; };
+		8963B5211C8A628F0061F68E /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		8963B5241C8A63500061F68E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8963B5201C8A62870061F68E /* libfirmata.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				8963B4FB1C8A12280061F68E /* Frameworks */,
+				8963B51A1C8A5DC30061F68E /* Dependencies */,
 				89146E5E1C8A103100EC8F10 /* Sources */,
 				89146E6E1C8A103100EC8F10 /* Tests */,
 				89146E5D1C8A103100EC8F10 /* Products */,
@@ -141,6 +150,29 @@
 			path = fakes;
 			sourceTree = "<group>";
 		};
+		8963B51A1C8A5DC30061F68E /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				8963B51B1C8A623A0061F68E /* CFirmata */,
+			);
+			name = Dependencies;
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		8963B51B1C8A623A0061F68E /* CFirmata */ = {
+			isa = PBXGroup;
+			children = (
+				8963B51C1C8A626A0061F68E /* firmata.h */,
+				8963B51D1C8A626A0061F68E /* serial.h */,
+				8963B51E1C8A626A0061F68E /* servo.h */,
+				8963B51F1C8A62870061F68E /* libfirmata.a */,
+				8963B5211C8A628F0061F68E /* Makefile */,
+				8963B5241C8A63500061F68E /* module.modulemap */,
+			);
+			name = CFirmata;
+			path = "CFirmata-0.3.0";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,6 +183,7 @@
 				89146E581C8A103100EC8F10 /* Sources */,
 				89146E591C8A103100EC8F10 /* Frameworks */,
 				89146E5A1C8A103100EC8F10 /* Resources */,
+				8963B5231C8A62960061F68E /* Build CFirmata */,
 			);
 			buildRules = (
 			);
@@ -234,6 +267,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8963B5231C8A62960061F68E /* Build CFirmata */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build CFirmata";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${PROJECT_DIR}/Packages/CFirmata-*/\nmake static";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89146E581C8A103100EC8F10 /* Sources */ = {
@@ -357,8 +407,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Packages/CFirmata-0.3.0",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.Phobos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Packages/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -371,8 +426,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Packages/CFirmata-0.3.0",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.Phobos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Packages/**";
 			};
 			name = Release;
 		};

@@ -35,11 +35,11 @@ final class FakeFirmata : Firmata {
     }
 
     private(set) var digitalReadCallCount : Int = 0
-    private var digitalReadArgs : Array<(Int, Int -> Void)> = []
-    func digitalReadArgsForCall(callIndex: Int) -> (Int, Int -> Void) {
+    private var digitalReadArgs : Array<(Int, Bool -> Void)> = []
+    func digitalReadArgsForCall(callIndex: Int) -> (Int, Bool -> Void) {
         return self.digitalReadArgs[callIndex]
     }
-    func digitalRead(pin: Int, callback: Int -> Void) {
+    func digitalRead(pin: Int, callback: Bool -> Void) {
         self.digitalReadCallCount += 1
         self.digitalReadArgs.append((pin, callback))
     }

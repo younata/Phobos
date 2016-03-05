@@ -5,61 +5,68 @@ public protocol Firmata {
     func setPWM(pin: Int, width: Int)
 
     func analogRead(pin: Int, callback: Double -> Void)
-    func digitalRead(pin: Int, callback: Int -> Void)
+    func digitalRead(pin: Int, callback: Bool -> Void)
 }
 
-public struct Pin {
-    let mode: UInt8 // retype-this
-    let analogChannel: UInt8 // retype-this
-    let modes: Mode
-    let value: UInt32
-
+public enum FirmataError: ErrorType {
+    case notAllocated
 }
 
-public enum Mode: UInt8 {
-    case Input = 0
-    case Output = 1
-    case Analag = 2
-    case PWM = 3
-    case Servo = 4
-    case Shift = 5
-    case i2c = 6
-}
+public final class Firmata23: Firmata {
+    private let firmata: UnsafeMutablePointer<t_firmata>
 
-enum MessageTypes: UInt8 {
-    case StartSysex = 0xF0
-    case EndSysex = 0xF7
+    private var servos: [Int: UnsafeMutablePointer<t_servo>] = [:]
 
-    case PinModeQuery = 0x72
-    case PinModeResponse = 0x73
+    public init() throws {
+        self.firmata = firmata_new(UnsafeMutablePointer<Int8>())
 
-    case PinStateQuery = 0x6D
-    case PinStateResponse = 0x6E
+        if self.firmata == nil {
+            throw FirmataError.notAllocated
+        }
+    }
 
-    case CapabilityQuery = 0x6B
-    case CapabilityResponse = 0x6C
+    deinit {
+        if self.firmata != nil {
+            free(self.firmata)
+        }
 
-    case AnalogMappingQuery = 0x69
-    case AnalogMappingResponse = 0x6A
+        for value in self.servos.values {
+            if value != nil {
+                free(value)
+            }
+        }
+    }
 
-    case DigitalMessage = 0x90
-    case DigitalReport = 0xC0
+    public func setServo(pin: Int, angle: Int) {
+        let servo: UnsafeMutablePointer<t_servo>
+        if let value = self.servos[pin] {
+            servo = value
+        } else {
+            servo = servo_attach(self.firmata, Int32(pin))
+        }
 
-    case AnalogMessage = 0xE0
-    case AnalogReport = 0xD0
+        servo_write(servo, Int32(angle))
+    }
 
-    case SetPinMode = 0xF4
+    public func setPWM(pin: Int, width: Int) {
+        firmata_analogWrite(self.firmata, Int32(pin), Int32(width))
+    }
 
-    case Version = 0xF9
-    case Reset = 0xFF
+    public func analogRead(pin: Int, callback: Double -> Void) {
+        self.readTransaction(pin) {
+            callback(Double($0) / 1024.0)
+        }
+    }
 
-    case ServorConfig = 0x70
-    case String = 0x71
-    case Firmware = 0x79
-    case SysexNonRealtime = 0x7E
-    case SysexRealtime = 0x7F
-}
+    public func digitalRead(pin: Int, callback: Bool -> Void) {
+        self.readTransaction(pin) {
+            callback($0 == 1)
+        }
+    }
 
-public final class Firmata23 {
-
+    private func readTransaction(pin: Int, callback: UInt32 -> Void) {
+        firmata_pull(self.firmata)
+        let pin = firmata_get_pin(self.firmata, Int32(pin))
+        callback(pin.value)
+    }
 }
