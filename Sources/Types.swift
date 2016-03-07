@@ -1,3 +1,15 @@
+public enum PhobosError: ErrorType {
+    case Network
+    case Serialize
+    case Deserialize
+}
+
+public protocol Serializable {
+    init?(bytes: UnsafePointer<UInt8>)
+
+    func serialize() -> [UInt8]
+}
+
 /// Time in seconds
 public typealias TimeInterval = Double
 

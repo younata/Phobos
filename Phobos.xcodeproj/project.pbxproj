@@ -20,6 +20,11 @@
 		8963B5131C8A18A20061F68E /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5121C8A18A20061F68E /* Types.swift */; };
 		8963B5191C8A26C70061F68E /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5181C8A26C70061F68E /* Firmata.swift */; };
 		8963B5201C8A62870061F68E /* libfirmata.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B51F1C8A62870061F68E /* libfirmata.a */; };
+		8963B5271C8A93690061F68E /* Communications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963B5261C8A93690061F68E /* Communications.swift */; };
+		8963B5291C8AACE80061F68E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B5281C8AACE80061F68E /* Result.framework */; };
+		8963B52B1C8AAD060061F68E /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B5281C8AACE80061F68E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8963B5301C8B41230061F68E /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B52F1C8B41230061F68E /* Freddy.framework */; };
+		8963B5311C8B412F0061F68E /* Freddy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8963B52F1C8B41230061F68E /* Freddy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +46,18 @@
 			files = (
 				8963B5031C8A125E0061F68E /* Nimble.framework in Embed Frameworks */,
 				8963B5041C8A125E0061F68E /* Quick.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8963B52A1C8AACF90061F68E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8963B52B1C8AAD060061F68E /* Result.framework in Embed Frameworks */,
+				8963B5311C8B412F0061F68E /* Freddy.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +84,9 @@
 		8963B51F1C8A62870061F68E /* libfirmata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfirmata.a; sourceTree = "<group>"; };
 		8963B5211C8A628F0061F68E /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		8963B5241C8A63500061F68E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		8963B5261C8A93690061F68E /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communications.swift; sourceTree = "<group>"; };
+		8963B5281C8AACE80061F68E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
+		8963B52F1C8B41230061F68E /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/Mac/Freddy.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +95,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8963B5201C8A62870061F68E /* libfirmata.a in Frameworks */,
+				8963B5301C8B41230061F68E /* Freddy.framework in Frameworks */,
+				8963B5291C8AACE80061F68E /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				89146E7A1C8A114E00EC8F10 /* Driver.swift */,
+				8963B5261C8A93690061F68E /* Communications.swift */,
 				8963B5181C8A26C70061F68E /* Firmata.swift */,
 				8963B50C1C8A15110061F68E /* Math.swift */,
 				8963B5121C8A18A20061F68E /* Types.swift */,
@@ -136,6 +159,8 @@
 		8963B4FB1C8A12280061F68E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8963B52F1C8B41230061F68E /* Freddy.framework */,
+				8963B5281C8AACE80061F68E /* Result.framework */,
 				8963B5011C8A125E0061F68E /* Nimble.framework */,
 				8963B5021C8A125E0061F68E /* Quick.framework */,
 			);
@@ -180,10 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89146E741C8A103100EC8F10 /* Build configuration list for PBXNativeTarget "Phobos" */;
 			buildPhases = (
+				8963B5231C8A62960061F68E /* Build CFirmata */,
 				89146E581C8A103100EC8F10 /* Sources */,
 				89146E591C8A103100EC8F10 /* Frameworks */,
 				89146E5A1C8A103100EC8F10 /* Resources */,
-				8963B5231C8A62960061F68E /* Build CFirmata */,
+				8963B52A1C8AACF90061F68E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8963B5271C8A93690061F68E /* Communications.swift in Sources */,
 				89146E7D1C8A114E00EC8F10 /* main.swift in Sources */,
 				89146E7C1C8A114E00EC8F10 /* Driver.swift in Sources */,
 				8963B50D1C8A15110061F68E /* Math.swift in Sources */,
@@ -405,6 +432,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -424,6 +455,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
