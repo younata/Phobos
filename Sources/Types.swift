@@ -5,9 +5,9 @@ public enum PhobosError: ErrorType {
 }
 
 public protocol Serializable {
-    init?(bytes: UnsafeBufferPointer<UInt8>)
+    init?(json: [String: Any])
 
-    func serialize() -> UnsafeBufferPointer<UInt8>
+    func serialize() -> [String: Any]
 }
 
 /// Time in seconds
@@ -16,7 +16,7 @@ public typealias TimeInterval = Double
 /**
  Represents a 3d vector, unitless
  */
-public struct Vector: Equatable {
+public struct Vector: Equatable, Serializable {
     public let x: Double
     public let y: Double
     public let z: Double
@@ -26,18 +26,44 @@ public struct Vector: Equatable {
         self.y = y
         self.z = z
     }
+
+    public init?(json: [String: Any]) {
+        guard let x = json["x"] as? Double, y = json["y"] as? Double, z = json["z"] as? Double else { return nil }
+        self.init(x: x, y: y, z: z)
+    }
+
+    public func serialize() -> [String: Any] {
+        return [
+            "x": self.x,
+            "y": self.y,
+            "z": self.z
+        ]
+    }
 }
 
 /**
  Combines Linear and Angular vectors
  */
-public struct Twist: Equatable {
+public struct Twist: Equatable, Serializable {
     public let angular: Vector
     public let linear: Vector
 
     public init(angular: Vector, linear: Vector) {
         self.angular = angular
         self.linear = linear
+    }
+
+    public init?(json: [String: Any]) {
+        guard let angularJson = json["angular"] as? [String: Any], linearJson = json["linear"] as? [String: Any],
+              angular = Vector(json: angularJson), linear = Vector(json: linearJson) else { return nil }
+        self.init(angular: angular, linear: linear)
+    }
+
+    public func serialize() -> [String: Any] {
+        return [
+            "angular": self.angular.serialize(),
+            "linear": self.linear.serialize()
+        ]
     }
 }
 
@@ -51,6 +77,19 @@ public struct TwistError: Equatable {
     public init(twist: Twist, error: Twist) {
         self.twist = twist
         self.error = error
+    }
+
+    public init?(json: [String: Any]) {
+        guard let twistJson = json["twist"] as? [String: Any], errorJson = json["error"] as? [String: Any],
+              twist = Twist(json: twistJson), error = Twist(json: errorJson) else { return nil }
+        self.init(twist: twist, error: error)
+    }
+
+    public func serialize() -> [String: Any] {
+        return [
+            "twist": self.twist.serialize(),
+            "error": self.error.serialize(),
+        ]
     }
 }
 

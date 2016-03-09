@@ -1,4 +1,7 @@
 import CFirmata
+#if os(Linux)
+import Glibc
+#endif
 
 public protocol Firmata {
     func setServo(pin: Int, angle: Int)
