@@ -83,7 +83,6 @@
 		8963B51E1C8A626A0061F68E /* servo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = servo.h; path = includes/servo.h; sourceTree = "<group>"; };
 		8963B51F1C8A62870061F68E /* libfirmata.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfirmata.a; sourceTree = "<group>"; };
 		8963B5211C8A628F0061F68E /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		8963B5241C8A63500061F68E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		8963B5261C8A93690061F68E /* Communications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communications.swift; sourceTree = "<group>"; };
 		8963B5281C8AACE80061F68E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		8963B52F1C8B41230061F68E /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/Mac/Freddy.framework; sourceTree = "<group>"; };
@@ -192,7 +191,6 @@
 				8963B51E1C8A626A0061F68E /* servo.h */,
 				8963B51F1C8A62870061F68E /* libfirmata.a */,
 				8963B5211C8A628F0061F68E /* Makefile */,
-				8963B5241C8A63500061F68E /* module.modulemap */,
 			);
 			name = CFirmata;
 			path = "CFirmata-0.3.0";
@@ -429,7 +427,6 @@
 		89146E751C8A103100EC8F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -439,8 +436,9 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Packages/CFirmata-0.3.0",
+					/usr/local/lib,
+					"$(PROJECT_DIR)/Packages/**",
+					"$(PROJECT_DIR)/Supporting\\ Files/CFirmata",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.Phobos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -452,7 +450,6 @@
 		89146E761C8A103100EC8F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -462,8 +459,9 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Packages/CFirmata-0.3.0",
+					/usr/local/lib,
+					"$(PROJECT_DIR)/Packages/**",
+					"$(PROJECT_DIR)/Supporting\\ Files/CFirmata",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.Phobos;
 				PRODUCT_NAME = "$(TARGET_NAME)";

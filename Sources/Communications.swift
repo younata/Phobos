@@ -3,7 +3,7 @@ import Result
 public final class Subscriber {
     private let client: Client
 
-    private var topicMessages: [String: Result<UnsafePointer<UInt8>, PhobosError> -> Void]
+    private var topicMessages: [String: Result<UnsafeBufferPointer<UInt8>, PhobosError> -> Void] = [:]
 
     public init(client: Client) {
         self.client = client
@@ -19,15 +19,15 @@ public final class Subscriber {
                     callback(.Failure(.Deserialize))
                 }
             case let .Failure(error):
-                callback(error)
+                callback(.Failure(error))
             }
         }
 
         self.client.subscribe(topic, subscriber: self)
     }
 
-    public func stopListening() {
-        self.client.unsubscribe(self.topic, subscriber: self)
+    public func stopListening(topic: String){
+        self.client.unsubscribe(topic, subscriber: self)
     }
 }
 
@@ -44,7 +44,7 @@ public struct Publisher<T: Serializable> {
 }
 
 public protocol Client {
-    func publish(topic: String, data: String)
+    func publish(topic: String, data: UnsafeBufferPointer<UInt8>)
 
     func subscribe(topic: String, subscriber: Subscriber)
     func unsubscribe(topic: String, subscriber: Subscriber)

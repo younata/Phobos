@@ -5,9 +5,9 @@ public enum PhobosError: ErrorType {
 }
 
 public protocol Serializable {
-    init?(bytes: UnsafePointer<UInt8>)
+    init?(bytes: UnsafeBufferPointer<UInt8>)
 
-    func serialize() -> [UInt8]
+    func serialize() -> UnsafeBufferPointer<UInt8>
 }
 
 /// Time in seconds

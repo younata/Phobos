@@ -1,4 +1,4 @@
-public func clamp<T: SignedNumberType>(value: T, min minValue: T, max maxValue: T) -> T {
+public func clamp(value: Double, min minValue: Double, max maxValue: Double) -> Double {
     precondition(minValue <= maxValue)
     return max(minValue, min(value, maxValue))
 }

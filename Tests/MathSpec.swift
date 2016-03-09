@@ -25,12 +25,12 @@ class MathSpec: QuickSpec {
 
         describe("map") {
             it("maps the input value continuously across from min to max") {
-                expect(map(0.5, 3, 5)) ≈ 4.0
+                expect(map(0.5, min: 3, max: 5)) ≈ 4.0
             }
 
             it("clamps the output from the min to the max") {
-                expect(map(-2, 3, 5)) == 3
-                expect(map(6, 3, 5)) == 5
+                expect(map(-2, min: 3, max: 5)) == 3
+                expect(map(6, min: 3, max: 5)) == 5
             }
         }
 
