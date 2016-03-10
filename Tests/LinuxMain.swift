@@ -1,6 +1,8 @@
 import Quick
 
 QCKMain([
-    DriverSpec(),
-    MathSpec()
+    CommunicationsSpec(),
+    HTTPClientSpec(),
+    MathSpec(),
+    TypesSpec(),
 ])
