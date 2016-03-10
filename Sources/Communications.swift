@@ -1,4 +1,4 @@
-import Result
+//import Result
 import Jay
 
 public enum Result<T, U: ErrorType> {
