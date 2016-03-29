@@ -8,6 +8,8 @@ let package = Package(
 //        .Package(url: "https://github.com/antitypical/Result.git", majorVersion: 1),
     ],
     testDependencies: [
-        .Package(url: "https://github.com/briancroom/Quick.git", majorVersion: 0)
+        .Package(url: "TestPackages/Quick", majorVersion: 0),
+        .Package(url: "TestPackages/Nimble", majorVersion: 0)
+
     ]
 )
