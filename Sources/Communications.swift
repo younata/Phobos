@@ -1,7 +1,7 @@
 //import Result
 import Jay
 
-public enum Result<T, U: ErrorType> {
+public enum Result<T, U: ErrorProtocol> {
     case Success(T)
     case Failure(U)
 }

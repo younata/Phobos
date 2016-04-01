@@ -1,4 +1,4 @@
-public enum PhobosError: ErrorType {
+public enum PhobosError: ErrorProtocol {
     case Network
     case Serialize
     case Deserialize

@@ -8,7 +8,8 @@ public final class HTTPClient: Client, RouterDriver {
     public static let sharedClient = HTTPClient()
 
     internal init(setApp: Bool = true) {
-        self.application = Application(router: self)
+        self.application = Application()
+        self.application.router = self
         self.application.start()
     }
 
@@ -79,8 +80,8 @@ public final class HTTPClient: Client, RouterDriver {
     }
 
     private func removeForeignSubscriber(topic: Topic) -> Bool {
-        if let index = self.foreignSubscribers.indexOf(topic) {
-            self.foreignSubscribers.removeAtIndex(index)
+        if let index = self.foreignSubscribers.index(of: topic) {
+            self.foreignSubscribers.remove(at: index)
             return true
         }
         return false
